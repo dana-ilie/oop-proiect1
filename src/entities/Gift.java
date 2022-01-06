@@ -1,15 +1,23 @@
-package input;
+package entities;
 
-public class SantaGiftsInputData {
+public class Gift {
     private String productName;
     private Double price;
     private String category;
 
-    public SantaGiftsInputData(String productName, Double price,
-                               String category) {
+    public Gift(String productName, Double price, String category) {
         this.productName = productName;
         this.price = price;
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Gift{" +
+                "productName='" + productName + '\'' +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                '}';
     }
 
     public String getProductName() {
@@ -36,12 +44,4 @@ public class SantaGiftsInputData {
         this.category = category;
     }
 
-    @Override
-    public String toString() {
-        return "SantaGiftsInputData{" +
-                "productName='" + productName + '\'' +
-                ", price=" + price +
-                ", category='" + category + '\'' +
-                '}';
-    }
 }
