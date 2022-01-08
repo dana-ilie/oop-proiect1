@@ -31,7 +31,7 @@ public class Utils {
             for (Object jsonGift : array) {
                 finalArray.add(new SantaGiftsInputData(
                         (String) ((JSONObject) jsonGift).get("productName"),
-                        (Double) ((JSONObject) jsonGift).get("price"),
+                        ((Long) ((JSONObject) jsonGift).get("price")).doubleValue(),
                         (String) ((JSONObject) jsonGift).get("category")
                 ));
             }
@@ -46,12 +46,12 @@ public class Utils {
             ArrayList<ChildrenInputData> finalArray = new ArrayList<>();
             for (Object jsonChild : array) {
                 finalArray.add(new ChildrenInputData(
-                        (Integer) ((JSONObject) jsonChild).get("id"),
+                        ((Long) ((JSONObject) jsonChild).get("id")).intValue(),
                         (String) ((JSONObject) jsonChild).get("lastName"),
                         (String) ((JSONObject) jsonChild).get("firstName"),
-                        (Integer) ((JSONObject) jsonChild).get("age"),
+                        ((Long) ((JSONObject) jsonChild).get("age")).intValue(),
                         (String) ((JSONObject) jsonChild).get("city"),
-                        (Double) ((JSONObject) jsonChild).get("niceScore"),
+                        ((Long) ((JSONObject) jsonChild).get("niceScore")).doubleValue(),
                         Utils.convertJSONArray((JSONArray) ((JSONObject) jsonChild)
                                 .get("giftsPreferences"))
                 ));
@@ -65,10 +65,17 @@ public class Utils {
     public static ArrayList<ChildUpdateInputData> convertJSONChildrenUpdates(final JSONArray array) {
         if (array != null) {
             ArrayList<ChildUpdateInputData> finalArray = new ArrayList<>();
+
             for (Object jsonChildUpdate : array) {
+                Double niceScore;
+                if (((JSONObject) jsonChildUpdate).get("niceScore") != null) {
+                    niceScore = ((Long) ((JSONObject) jsonChildUpdate).get("niceScore")).doubleValue();
+                } else {
+                    niceScore = null;
+                }
                 finalArray.add(new ChildUpdateInputData(
-                        (Integer) ((JSONObject) jsonChildUpdate).get("id"),
-                        (Double) ((JSONObject) jsonChildUpdate).get("niceScore"),
+                        ((Long) ((JSONObject) jsonChildUpdate).get("id")).intValue(),
+                        niceScore,
                         Utils.convertJSONArray((JSONArray) ((JSONObject) jsonChildUpdate)
                                 .get("giftsPreferences"))
                 ));

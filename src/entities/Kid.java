@@ -1,5 +1,6 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import interfaces.IChild;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class Kid implements IChild {
     private String firstName;
     private Integer age;
     private String city;
+    @JsonIgnore
     private Double niceScore;
     private List<String> giftsPreferences;
     private Double averageScore;
@@ -28,6 +30,19 @@ public class Kid implements IChild {
         this.city = city;
         this.niceScore = niceScore;
         this.giftsPreferences = giftsPreferences;
+        this.averageScore = 0.0;
+        this.niceScoreHistory = new ArrayList<>();
+        this.assignedBudget = 0.0;
+        this.receivedGifts = new ArrayList<>();
+    }
+
+    @Override
+    public void calculateAverageScore() {
+        Double sum = 0.0;
+        for (Double score : niceScoreHistory) {
+            sum += score;
+        }
+        this.averageScore = sum / niceScoreHistory.size();
     }
 
     @Override
@@ -118,7 +133,42 @@ public class Kid implements IChild {
     }
 
     @Override
-    public void calculateAverageScore() {
+    public Double getAverageScore() {
+        return averageScore;
+    }
 
+    @Override
+    public List<Double> getNiceScoreHistory() {
+        return niceScoreHistory;
+    }
+
+    @Override
+    public Double getAssignedBudget() {
+        return assignedBudget;
+    }
+
+    @Override
+    public List<Gift> getReceivedGifts() {
+        return receivedGifts;
+    }
+
+    @Override
+    public void setAssignedBudget(Double assignedBudget) {
+        this.assignedBudget = assignedBudget;
+    }
+
+    @Override
+    public void setAverageScore(Double averageScore) {
+        this.averageScore = averageScore;
+    }
+
+    @Override
+    public void setNiceScoreHistory(List<Double> niceScoreHistory) {
+        this.niceScoreHistory = niceScoreHistory;
+    }
+
+    @Override
+    public void setReceivedGifts(List<Gift> receivedGifts) {
+        this.receivedGifts = receivedGifts;
     }
 }

@@ -38,4 +38,5 @@ public class ChildUpdate {
     public void setGiftsPreferences(List<String> giftsPreferences) {
         this.giftsPreferences = giftsPreferences;
     }
+
 }

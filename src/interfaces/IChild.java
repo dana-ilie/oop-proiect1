@@ -1,5 +1,7 @@
 package interfaces;
 
+import entities.Gift;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,22 @@ public interface IChild {
 
     void setGiftsPreferences(List<String> giftsPreferences);
 
+    Double getAverageScore();
+
+    List<Double> getNiceScoreHistory();
+
+    Double getAssignedBudget();
+
+    List<Gift> getReceivedGifts();
+
+    void setAssignedBudget(Double assignedBudget);
+
     void calculateAverageScore();
+
+    void setAverageScore(Double averageScore);
+
+    void setNiceScoreHistory(List<Double> niceScoreHistory);
+
+    void setReceivedGifts(List<Gift> receivedGifts);
 
 }

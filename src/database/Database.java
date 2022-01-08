@@ -1,5 +1,6 @@
 package database;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import entities.Gift;
 import factories.IChildFactory;
 import input.*;
@@ -34,6 +35,10 @@ public class Database {
                     child.getGiftsPreferences()));
         }
 
+        for (IChild child : children) {
+            child.getNiceScoreHistory().add(child.getNiceScore());
+        }
+
         for (SantaGiftsInputData gift : input.getSantaGiftsList()) {
             santaGiftsList.add(new Gift(gift.getProductName(),
                     gift.getPrice(), gift.getCategory()));
@@ -64,8 +69,27 @@ public class Database {
             annualChanges.add(new AnnualChange(change.getNewSantaBudget(),
                     newGifts, newChildren, childrenUpdates));
         }
+    }
 
-        resultsList = new ArrayList<>();
+    public void addResults(int index) {
+        List<IChild> resultChildren = new ArrayList<>();
+
+        for (IChild child : children) {
+            List<Double> niceScoreHistory = new ArrayList<>(child.getNiceScoreHistory());
+            List<String> giftPreferences = new ArrayList<>(child.getGiftsPreferences());
+
+            IChild copyChild = IChildFactory.createChild(child.getId(),
+                    child.getLastName(), child.getFirstName(),
+                    child.getAge(), child.getCity(), child.getNiceScore(),
+                    giftPreferences);
+            copyChild.setAverageScore(child.getAverageScore());
+            copyChild.setNiceScoreHistory(niceScoreHistory);
+            copyChild.setAssignedBudget(child.getAssignedBudget());
+            copyChild.setReceivedGifts(child.getReceivedGifts());
+
+            resultChildren.add(copyChild);
+        }
+        resultsList.add(index, resultChildren);
     }
 
     @Override
@@ -78,5 +102,53 @@ public class Database {
                 ", annualChanges=" + annualChanges +
                 ", resultsList=" + resultsList +
                 '}';
+    }
+
+    public Integer getNumberOfYears() {
+        return numberOfYears;
+    }
+
+    public Double getSantaBudget() {
+        return santaBudget;
+    }
+
+    public List<IChild> getChildren() {
+        return children;
+    }
+
+    public List<Gift> getSantaGiftsList() {
+        return santaGiftsList;
+    }
+
+    public List<AnnualChange> getAnnualChanges() {
+        return annualChanges;
+    }
+
+    public List<List<IChild>> getResultsList() {
+        return resultsList;
+    }
+
+    public void setChildren(List<IChild> children) {
+        this.children = children;
+    }
+
+    public void setNumberOfYears(Integer numberOfYears) {
+        this.numberOfYears = numberOfYears;
+    }
+
+    public void setSantaBudget(Double santaBudget) {
+        this.santaBudget = santaBudget;
+    }
+
+    public void setSantaGiftsList(List<Gift> santaGiftsList) {
+        this.santaGiftsList = santaGiftsList;
+    }
+
+    public void setAnnualChanges(List<AnnualChange> annualChanges) {
+        this.annualChanges = annualChanges;
+    }
+
+    public void setResultsList(List<List<IChild>> resultsList) {
+        this.resultsList = resultsList;
     }
 }
