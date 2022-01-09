@@ -23,8 +23,8 @@ public class InputLoader {
      */
     public Input readData() {
         JSONParser jsonParser = new JSONParser();
-        Integer numberOfYears = 0;
-        Double santaBudget = 0.0;
+        int numberOfYears = 0;
+        double santaBudget = 0.0;
         List<ChildrenInputData> children = new ArrayList<>();
         List<SantaGiftsInputData> santaGiftsList = new ArrayList<>();
         List<AnnualChangesInputData> annualChanges = new ArrayList<>();

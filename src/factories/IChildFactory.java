@@ -10,7 +10,16 @@ import interfaces.IChild;
 import java.util.List;
 
 public final class IChildFactory {
-    private IChildFactory() {
+    private static IChildFactory childFactory = null;
+
+    /**
+     * @return singleton factory
+     */
+    public static IChildFactory getIChildFactory() {
+        if (childFactory == null) {
+            childFactory = new IChildFactory();
+        }
+        return childFactory;
     }
 
     /**
@@ -23,7 +32,7 @@ public final class IChildFactory {
      * @param giftsPreferences child gifts preferences
      * @return a child instance
      */
-    public static IChild createChild(final Integer id, final String lastName,
+    public IChild createChild(final Integer id, final String lastName,
                                      final String firstName, final Integer age,
                                      final String city, final Double niceScore,
                                      final List<String> giftsPreferences) {

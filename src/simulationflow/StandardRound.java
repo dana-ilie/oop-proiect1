@@ -19,13 +19,7 @@ public class StandardRound {
      */
     public void executeStandardRound(final Database database,
                                      final AnnualChange update) {
-        // increment age of each child
-        // remove youngAdults
-        // recreate children list (factory)
-        // sort children list by id
-        // execute updates
-        // assign gifts
-
+        IChildFactory childFactory = IChildFactory.getIChildFactory();
         List<IChild> children = new ArrayList<>();
 
         for (IChild child : database.getChildren()) {
@@ -38,18 +32,7 @@ public class StandardRound {
 
 
         for (IChild child : database.getChildren()) {
-            List<Double> niceScoreHistory = new ArrayList<>(child.getNiceScoreHistory());
-            List<String> giftPreferences = new ArrayList<>(child.getGiftsPreferences());
-            IChild copyChild = IChildFactory.createChild(child.getId(),
-                    child.getLastName(), child.getFirstName(),
-                    child.getAge(), child.getCity(), child.getNiceScore(),
-                    giftPreferences);
-            copyChild.setAverageScore(child.getAverageScore());
-            copyChild.setNiceScoreHistory(niceScoreHistory);
-            copyChild.setAssignedBudget(child.getAssignedBudget());
-            copyChild.setReceivedGifts(child.getReceivedGifts());
-
-            children.add(copyChild);
+            database.addChild(childFactory, children, child);
         }
 
         /*

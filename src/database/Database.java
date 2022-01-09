@@ -24,6 +24,7 @@ public final class Database {
     private final List<List<IChild>> resultsList;
 
     private Database(final Input input) {
+        IChildFactory childFactory = IChildFactory.getIChildFactory();
         children = new ArrayList<>();
         santaGiftsList = new ArrayList<>();
         annualChanges = new ArrayList<>();
@@ -33,7 +34,7 @@ public final class Database {
         this.santaBudget = input.getSantaBudget();
 
         for (ChildrenInputData child : input.getChildren()) {
-            children.add(IChildFactory.createChild(child.getId(),
+            children.add(childFactory.createChild(child.getId(),
                     child.getLastName(), child.getFirstName(),
                     child.getAge(), child.getCity(), child.getNiceScore(),
                     child.getGiftsPreferences()));
@@ -59,7 +60,7 @@ public final class Database {
             }
 
             for (ChildrenInputData child : change.getNewChildren()) {
-                newChildren.add(IChildFactory.createChild(child.getId(),
+                newChildren.add(childFactory.createChild(child.getId(),
                         child.getLastName(), child.getFirstName(),
                         child.getAge(), child.getCity(), child.getNiceScore(),
                         child.getGiftsPreferences()));
@@ -90,24 +91,36 @@ public final class Database {
      * @param index position where to add in the results list
      */
     public void addResults(final int index) {
+        IChildFactory childFactory = IChildFactory.getIChildFactory();
         List<IChild> resultChildren = new ArrayList<>();
 
         for (IChild child : children) {
-            List<Double> niceScoreHistory = new ArrayList<>(child.getNiceScoreHistory());
-            List<String> giftPreferences = new ArrayList<>(child.getGiftsPreferences());
-
-            IChild copyChild = IChildFactory.createChild(child.getId(),
-                    child.getLastName(), child.getFirstName(),
-                    child.getAge(), child.getCity(), child.getNiceScore(),
-                    giftPreferences);
-            copyChild.setAverageScore(child.getAverageScore());
-            copyChild.setNiceScoreHistory(niceScoreHistory);
-            copyChild.setAssignedBudget(child.getAssignedBudget());
-            copyChild.setReceivedGifts(child.getReceivedGifts());
-
-            resultChildren.add(copyChild);
+            addChild(childFactory, resultChildren, child);
         }
         resultsList.add(index, resultChildren);
+    }
+
+    /**
+     * @param childFactory child factory
+     * @param resultChildren results children list
+     * @param child child to be added to the list
+     */
+    public void addChild(final IChildFactory childFactory,
+                         final List<IChild> resultChildren,
+                         final IChild child) {
+        List<Double> niceScoreHistory = new ArrayList<>(child.getNiceScoreHistory());
+        List<String> giftPreferences = new ArrayList<>(child.getGiftsPreferences());
+
+        IChild copyChild = childFactory.createChild(child.getId(),
+                child.getLastName(), child.getFirstName(),
+                child.getAge(), child.getCity(), child.getNiceScore(),
+                giftPreferences);
+        copyChild.setAverageScore(child.getAverageScore());
+        copyChild.setNiceScoreHistory(niceScoreHistory);
+        copyChild.setAssignedBudget(child.getAssignedBudget());
+        copyChild.setReceivedGifts(child.getReceivedGifts());
+
+        resultChildren.add(copyChild);
     }
 
     @Override
