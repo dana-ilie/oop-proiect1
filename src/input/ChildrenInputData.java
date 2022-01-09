@@ -11,9 +11,10 @@ public class ChildrenInputData {
     private Double niceScore;
     private List<String> giftsPreferences;
 
-    public ChildrenInputData(Integer id, String lastName, String firstName,
-                             Integer age, String city, Double niceScore,
-                             List<String> giftsPreferences) {
+    public ChildrenInputData(final Integer id, final String lastName,
+                             final String firstName, final Integer age,
+                             final String city, final Double niceScore,
+                             final List<String> giftsPreferences) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -23,72 +24,82 @@ public class ChildrenInputData {
         this.giftsPreferences = giftsPreferences;
     }
 
-    public Integer getId() {
+    public final Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public final void setId(final Integer id) {
         this.id = id;
     }
 
-    public String getLastName() {
+    public final String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public final void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
-    public String getFirstName() {
+    public final String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public final void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
-    public Integer getAge() {
+    public final Integer getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public final void setAge(final Integer age) {
         this.age = age;
     }
 
-    public String getCity() {
+    public final String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public final void setCity(final String city) {
         this.city = city;
     }
 
-    public Double getNiceScore() {
+    public final Double getNiceScore() {
         return niceScore;
     }
 
-    public void setNiceScore(Double niceScore) {
+    public final void setNiceScore(final Double niceScore) {
         this.niceScore = niceScore;
     }
 
-    public List<String> getGiftsPreferences() {
+    public final List<String> getGiftsPreferences() {
         return giftsPreferences;
     }
 
-    public void setGiftsPreferences(List<String> giftsPreferences) {
+    public final void setGiftsPreferences(final List<String> giftsPreferences) {
         this.giftsPreferences = giftsPreferences;
     }
 
     @Override
-    public String toString() {
-        return "ChildrenInputData{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", age=" + age +
-                ", city='" + city + '\'' +
-                ", niceScore=" + niceScore +
-                ", giftsPreferences=" + giftsPreferences +
-                '}';
+    public final String toString() {
+        return "ChildrenInputData{"
+                + "id="
+                + id
+                + ", lastName='"
+                + lastName
+                + '\''
+                + ", firstName='"
+                + firstName
+                + '\''
+                + ", age="
+                + age
+                + ", city='"
+                + city
+                + '\''
+                + ", niceScore="
+                + niceScore
+                + ", giftsPreferences="
+                + giftsPreferences
+                + '}';
     }
 }

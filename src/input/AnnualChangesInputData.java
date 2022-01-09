@@ -1,21 +1,16 @@
 package input;
-
-import entities.Gift;
-import interfaces.IChild;
-import updates.ChildUpdate;
-
 import java.util.List;
 
 public class AnnualChangesInputData {
-    private Double newSantaBudget;
-    private List<SantaGiftsInputData> newGifts;
+    private final Double newSantaBudget;
+    private final List<SantaGiftsInputData> newGifts;
     private List<ChildrenInputData> newChildren;
     private List<ChildUpdateInputData> childrenUpdates;
 
-    public AnnualChangesInputData(Double newSantaBudget,
-                        List<SantaGiftsInputData> newGifts,
-                        List<ChildrenInputData> newChildren,
-                        List<ChildUpdateInputData> childrenUpdates) {
+    public AnnualChangesInputData(final Double newSantaBudget,
+                        final List<SantaGiftsInputData> newGifts,
+                        final List<ChildrenInputData> newChildren,
+                        final List<ChildUpdateInputData> childrenUpdates) {
         this.newSantaBudget = newSantaBudget;
         this.newGifts = newGifts;
         this.newChildren = newChildren;
@@ -24,45 +19,41 @@ public class AnnualChangesInputData {
 
 
 
-    public Double getNewSantaBudget() {
+    public final Double getNewSantaBudget() {
         return newSantaBudget;
     }
 
-    public void setNewSantaBudget(Double newSantaBudget) {
-        this.newSantaBudget = newSantaBudget;
-    }
-
-    public List<SantaGiftsInputData> getNewGifts() {
+    public final List<SantaGiftsInputData> getNewGifts() {
         return newGifts;
     }
 
-    public void setNewGifts(List<SantaGiftsInputData> newGifts) {
-        this.newGifts = newGifts;
-    }
-
-    public List<ChildrenInputData> getNewChildren() {
+    public final List<ChildrenInputData> getNewChildren() {
         return newChildren;
     }
 
-    public void setNewChildren(List<ChildrenInputData> newChildren) {
+    public final void setNewChildren(final List<ChildrenInputData> newChildren) {
         this.newChildren = newChildren;
     }
 
-    public List<ChildUpdateInputData> getChildrenUpdates() {
+    public final List<ChildUpdateInputData> getChildrenUpdates() {
         return childrenUpdates;
     }
 
-    public void setChildrenUpdates(List<ChildUpdateInputData> childrenUpdates) {
+    public final void setChildrenUpdates(final List<ChildUpdateInputData> childrenUpdates) {
         this.childrenUpdates = childrenUpdates;
     }
 
     @Override
-    public String toString() {
-        return "AnnualChangesInputData{" +
-                "newSantaBudget=" + newSantaBudget +
-                ", newGifts=" + newGifts +
-                ", newChildren=" + newChildren +
-                ", childrenUpdates=" + childrenUpdates +
-                '}';
+    public final String toString() {
+        return "AnnualChangesInputData{"
+                + "newSantaBudget="
+                + newSantaBudget
+                + ", newGifts="
+                + newGifts
+                + ", newChildren="
+                + newChildren
+                + ", childrenUpdates="
+                + childrenUpdates
+                + '}';
     }
 }

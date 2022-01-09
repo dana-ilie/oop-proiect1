@@ -1,6 +1,4 @@
 package utils;
-
-import entities.Gift;
 import input.ChildUpdateInputData;
 import input.ChildrenInputData;
 import input.SantaGiftsInputData;
@@ -9,10 +7,14 @@ import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
-public class Utils {
+public final class Utils {
     private Utils() {
     }
 
+    /**
+     * @param array a json array to be converted to string array
+     * @return string array
+     */
     public static ArrayList<String> convertJSONArray(final JSONArray array) {
         if (array != null) {
             ArrayList<String> finalArray = new ArrayList<>();
@@ -25,6 +27,10 @@ public class Utils {
         }
     }
 
+    /**
+     * @param array gifts json array to be converted to SantaGiftsInputData array
+     * @return converted SantaGiftsInputData array
+     */
     public static ArrayList<SantaGiftsInputData> convertJSONGifts(final JSONArray array) {
         if (array != null) {
             ArrayList<SantaGiftsInputData> finalArray = new ArrayList<>();
@@ -41,6 +47,10 @@ public class Utils {
         }
     }
 
+    /**
+     * @param array children json array to be converted to ChildrenInputData array
+     * @return converted ChildrenInputData array
+     */
     public static ArrayList<ChildrenInputData> convertJSONNewChildren(final JSONArray array) {
         if (array != null) {
             ArrayList<ChildrenInputData> finalArray = new ArrayList<>();
@@ -62,14 +72,20 @@ public class Utils {
         }
     }
 
-    public static ArrayList<ChildUpdateInputData> convertJSONChildrenUpdates(final JSONArray array) {
+    /**
+     * @param array children updates json array to be converted to ChildUpdateInputData array
+     * @return converted ChildUpdateInputData array
+     */
+    public static ArrayList<ChildUpdateInputData> convertJSONChildrenUpdates(
+            final JSONArray array) {
         if (array != null) {
             ArrayList<ChildUpdateInputData> finalArray = new ArrayList<>();
 
             for (Object jsonChildUpdate : array) {
                 Double niceScore;
                 if (((JSONObject) jsonChildUpdate).get("niceScore") != null) {
-                    niceScore = ((Long) ((JSONObject) jsonChildUpdate).get("niceScore")).doubleValue();
+                    niceScore = ((Long) ((JSONObject) jsonChildUpdate).get("niceScore"))
+                            .doubleValue();
                 } else {
                     niceScore = null;
                 }

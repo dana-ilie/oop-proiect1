@@ -3,9 +3,6 @@ package writer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import database.Database;
 import interfaces.IChild;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
@@ -17,10 +14,14 @@ public class Writer {
         this.file = new FileWriter(path);
     }
 
-    public void writeFile(Database database) throws IOException {
-        annualChildren annualChildren = new annualChildren();
+    /**
+     * @param database the database
+     * @throws IOException exception
+     */
+    public void writeFile(final Database database) throws IOException {
+        AnnualChildren annualChildren = new AnnualChildren();
         for (List<IChild> childrenList : database.getResultsList()) {
-            children children = new children(childrenList);
+            Children children = new Children(childrenList);
             annualChildren.getAnnualChildren().add(children);
         }
         ObjectMapper objectMapper = new ObjectMapper();

@@ -5,43 +5,49 @@ public class SantaGiftsInputData {
     private Double price;
     private String category;
 
-    public SantaGiftsInputData(String productName, Double price,
-                               String category) {
+    public SantaGiftsInputData(final String productName,
+                               final Double price,
+                               final String category) {
         this.productName = productName;
         this.price = price;
         this.category = category;
     }
 
-    public String getProductName() {
+    public final String getProductName() {
         return productName;
     }
 
-    public void setProductName(String productName) {
+    public final void setProductName(final String productName) {
         this.productName = productName;
     }
 
-    public Double getPrice() {
+    public final Double getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public final void setPrice(final Double price) {
         this.price = price;
     }
 
-    public String getCategory() {
+    public final String getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public final void setCategory(final String category) {
         this.category = category;
     }
 
     @Override
-    public String toString() {
-        return "SantaGiftsInputData{" +
-                "productName='" + productName + '\'' +
-                ", price=" + price +
-                ", category='" + category + '\'' +
-                '}';
+    public final String toString() {
+        return "SantaGiftsInputData{"
+                + "productName='"
+                + productName
+                + '\''
+                + ", price="
+                + price
+                + ", category='"
+                + category
+                + '\''
+                + '}';
     }
 }

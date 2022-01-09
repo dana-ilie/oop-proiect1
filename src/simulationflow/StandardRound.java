@@ -1,5 +1,6 @@
-package simulationFlow;
+package simulationflow;
 
+import common.Constants;
 import database.Database;
 import entities.Gift;
 import factories.IChildFactory;
@@ -12,7 +13,12 @@ import java.util.Comparator;
 import java.util.List;
 
 public class StandardRound {
-    public void executeStandardRound(Database database, AnnualChange update) {
+    /**
+     * @param database the database
+     * @param update the update to be executed
+     */
+    public void executeStandardRound(final Database database,
+                                     final AnnualChange update) {
         // increment age of each child
         // remove youngAdults
         // recreate children list (factory)
@@ -28,7 +34,7 @@ public class StandardRound {
              */
             child.setAge(child.getAge() + 1);
         }
-        database.getChildren().removeIf(x -> x.getAge() > 18);
+        database.getChildren().removeIf(x -> x.getAge() > Constants.TEEN_AGE_LIMIT);
 
 
         for (IChild child : database.getChildren()) {
@@ -63,7 +69,7 @@ public class StandardRound {
         }
 
         for (IChild newChild : update.getNewChildren()) {
-            if (newChild.getAge() <= 18) {
+            if (newChild.getAge() <= Constants.TEEN_AGE_LIMIT) {
                 newChild.getNiceScoreHistory().add(newChild.getNiceScore());
                 database.getChildren().add(newChild);
             }
@@ -93,7 +99,8 @@ public class StandardRound {
                     int size = child.getGiftsPreferences().size();
                     for (int i = size - 1; i >= 0; i--) {
                         for (int j = i - 1; j >= 0; j--) {
-                            if (child.getGiftsPreferences().get(i).equals(child.getGiftsPreferences().get(j))) {
+                            if (child.getGiftsPreferences().get(i)
+                                    .equals(child.getGiftsPreferences().get(j))) {
                                 child.getGiftsPreferences().remove(i);
                             }
                         }

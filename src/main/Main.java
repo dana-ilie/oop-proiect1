@@ -5,8 +5,8 @@ import common.Constants;
 import database.Database;
 import input.Input;
 import input.InputLoader;
-import simulationFlow.InitialRound;
-import simulationFlow.StandardRound;
+import simulationflow.InitialRound;
+import simulationflow.StandardRound;
 import writer.Writer;
 import java.io.IOException;
 
@@ -22,13 +22,13 @@ public final class Main {
     public static void main(final String[] args) throws IOException {
 
         for (int testNr = 1; testNr <= Constants.TESTS_NUMBER; testNr++) {
-            String inputPath= "tests/test" + testNr + ".json";
+            String inputPath = "tests/test" + testNr + ".json";
             String outputPath = "output/out_" + testNr + ".json";
 
             InputLoader inputLoader = new InputLoader(inputPath);
             Input input = inputLoader.readData();
 
-            Database database = new Database(input);
+            Database database = Database.getDatabase(input);
             InitialRound initialRound = new InitialRound();
             StandardRound standardRound = new StandardRound();
 
@@ -43,6 +43,7 @@ public final class Main {
             Writer fileWriter = new Writer(outputPath);
             fileWriter.writeFile(database);
 
+            database.resetDatabase();
         }
 
         Checker.calculateScore();

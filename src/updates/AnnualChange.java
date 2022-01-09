@@ -11,10 +11,10 @@ public class AnnualChange {
     private List<IChild> newChildren;
     private List<ChildUpdate> childrenUpdates;
 
-    public AnnualChange(Double newSantaBudget,
-                         List<Gift> newGifts,
-                         List<IChild> newChildren,
-                         List<ChildUpdate> childrenUpdates) {
+    public AnnualChange(final Double newSantaBudget,
+                        final List<Gift> newGifts,
+                        final List<IChild> newChildren,
+                        final List<ChildUpdate> childrenUpdates) {
         this.newSantaBudget = newSantaBudget;
         this.newGifts = newGifts;
         this.newChildren = newChildren;
@@ -22,44 +22,48 @@ public class AnnualChange {
     }
 
     @Override
-    public String toString() {
-        return "AnnualChange{" +
-                "newSantaBudget=" + newSantaBudget +
-                ", newGifts=" + newGifts +
-                ", newChildren=" + newChildren +
-                ", childrenUpdates=" + childrenUpdates +
-                '}';
+    public final String toString() {
+        return "AnnualChange{"
+                + "newSantaBudget="
+                + newSantaBudget
+                + ", newGifts="
+                + newGifts
+                + ", newChildren="
+                + newChildren
+                + ", childrenUpdates="
+                + childrenUpdates
+                + '}';
     }
 
-    public Double getNewSantaBudget() {
+    public final Double getNewSantaBudget() {
         return newSantaBudget;
     }
 
-    public void setNewSantaBudget(Double newSantaBudget) {
+    public final void setNewSantaBudget(final Double newSantaBudget) {
         this.newSantaBudget = newSantaBudget;
     }
 
-    public List<Gift> getNewGifts() {
+    public final List<Gift> getNewGifts() {
         return newGifts;
     }
 
-    public void setNewGifts(List<Gift> newGifts) {
+    public final void setNewGifts(final List<Gift> newGifts) {
         this.newGifts = newGifts;
     }
 
-    public List<IChild> getNewChildren() {
+    public final List<IChild> getNewChildren() {
         return newChildren;
     }
 
-    public void setNewChildren(List<IChild> newChildren) {
+    public final void setNewChildren(final List<IChild> newChildren) {
         this.newChildren = newChildren;
     }
 
-    public List<ChildUpdate> getChildrenUpdates() {
+    public final List<ChildUpdate> getChildrenUpdates() {
         return childrenUpdates;
     }
 
-    public void setChildrenUpdates(List<ChildUpdate> childrenUpdates) {
+    public final void setChildrenUpdates(final List<ChildUpdate> childrenUpdates) {
         this.childrenUpdates = childrenUpdates;
     }
 }

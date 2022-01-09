@@ -2,7 +2,11 @@ package database;
 
 import entities.Gift;
 import factories.IChildFactory;
-import input.*;
+import input.Input;
+import input.ChildUpdateInputData;
+import input.ChildrenInputData;
+import input.SantaGiftsInputData;
+import input.AnnualChangesInputData;
 import interfaces.IChild;
 import updates.AnnualChange;
 import updates.ChildUpdate;
@@ -10,7 +14,8 @@ import updates.ChildUpdate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Database {
+public final class Database {
+    private static Database database = null;
     private Integer numberOfYears;
     private Double santaBudget;
     private List<IChild> children;
@@ -18,7 +23,7 @@ public class Database {
     private List<AnnualChange> annualChanges;
     private final List<List<IChild>> resultsList;
 
-    public Database (Input input) {
+    private Database(final Input input) {
         children = new ArrayList<>();
         santaGiftsList = new ArrayList<>();
         annualChanges = new ArrayList<>();
@@ -70,7 +75,21 @@ public class Database {
         }
     }
 
-    public void addResults(int index) {
+    /**
+     * @param input the input
+     * @return singleton database
+     */
+    public static Database getDatabase(final Input input) {
+        if (database == null) {
+            database = new Database(input);
+        }
+        return database;
+    }
+
+    /**
+     * @param index position where to add in the results list
+     */
+    public void addResults(final int index) {
         List<IChild> resultChildren = new ArrayList<>();
 
         for (IChild child : children) {
@@ -93,14 +112,21 @@ public class Database {
 
     @Override
     public String toString() {
-        return "Database{" +
-                "numberOfYears=" + numberOfYears +
-                ", santaBudget=" + santaBudget +
-                ", children=" + children +
-                ", santaGiftsList=" + santaGiftsList +
-                ", annualChanges=" + annualChanges +
-                ", resultsList=" + resultsList +
-                '}';
+        return "Database{"
+                +
+                "numberOfYears="
+                + numberOfYears
+                + ", santaBudget="
+                + santaBudget
+                + ", children="
+                + children
+                + ", santaGiftsList="
+                + santaGiftsList
+                + ", annualChanges="
+                + annualChanges
+                + ", resultsList="
+                + resultsList
+                + '}';
     }
 
     public Integer getNumberOfYears() {
@@ -127,23 +153,30 @@ public class Database {
         return resultsList;
     }
 
-    public void setChildren(List<IChild> children) {
+    public void setChildren(final List<IChild> children) {
         this.children = children;
     }
 
-    public void setNumberOfYears(Integer numberOfYears) {
+    public void setNumberOfYears(final Integer numberOfYears) {
         this.numberOfYears = numberOfYears;
     }
 
-    public void setSantaBudget(Double santaBudget) {
+    public void setSantaBudget(final Double santaBudget) {
         this.santaBudget = santaBudget;
     }
 
-    public void setSantaGiftsList(List<Gift> santaGiftsList) {
+    public void setSantaGiftsList(final List<Gift> santaGiftsList) {
         this.santaGiftsList = santaGiftsList;
     }
 
-    public void setAnnualChanges(List<AnnualChange> annualChanges) {
+    public void setAnnualChanges(final List<AnnualChange> annualChanges) {
         this.annualChanges = annualChanges;
+    }
+
+    /**
+     * resets the database for the next test input file
+     */
+    public void resetDatabase() {
+        database = null;
     }
 }

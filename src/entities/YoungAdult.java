@@ -20,9 +20,10 @@ public class YoungAdult implements IChild {
     private Double assignedBudget;
     private List<Gift> receivedGifts;
 
-    public YoungAdult (Integer id, String lastName, String firstName,
-                       Integer age, String city, Double niceScore,
-                       List<String> giftsPreferences) {
+    public YoungAdult(final Integer id, final String lastName,
+                      final String firstName, final Integer age,
+                      final String city, final Double niceScore,
+                      final List<String> giftsPreferences) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -36,135 +37,152 @@ public class YoungAdult implements IChild {
         this.receivedGifts = new ArrayList<>();
     }
 
+    /**
+     * calculates average score for a young adult
+     */
     @Override
     public void calculateAverageScore() {
         this.averageScore = -1.0;
     }
 
     @Override
-    public String toString() {
-        return "YoungAdult{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", age=" + age +
-                ", city='" + city + '\'' +
-                ", niceScore=" + niceScore +
-                ", giftsPreferences=" + giftsPreferences +
-                ", averageScore=" + averageScore +
-                ", niceScoreHistory=" + niceScoreHistory +
-                ", assignedBudget=" + assignedBudget +
-                ", receivedGifts=" + receivedGifts +
-                '}';
+    public final String toString() {
+        return "YoungAdult{"
+                + "id="
+                + id
+                + ", lastName='"
+                + lastName
+                + '\''
+                + ", firstName='"
+                + firstName
+                + '\''
+                + ", age="
+                + age
+                + ", city='"
+                + city
+                + '\''
+                + ", niceScore="
+                + niceScore
+                + ", giftsPreferences="
+                + giftsPreferences
+                + ", averageScore="
+                + averageScore
+                + ", niceScoreHistory="
+                + niceScoreHistory
+                + ", assignedBudget="
+                + assignedBudget
+                + ", receivedGifts="
+                + receivedGifts
+                + '}';
     }
 
     @Override
-    public Integer getId() {
+    public final Integer getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public final void setId(final Integer id) {
         this.id = id;
     }
 
     @Override
-    public String getLastName() {
+    public final String getLastName() {
         return lastName;
     }
 
     @Override
-    public void setLastName(String lastName) {
+    public final void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 
     @Override
-    public String getFirstName() {
+    public final String getFirstName() {
         return firstName;
     }
 
     @Override
-    public void setFirstName(String firstName) {
+    public final void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
     @Override
-    public Integer getAge() {
+    public final Integer getAge() {
         return age;
     }
 
     @Override
-    public void setAge(Integer age) {
+    public final void setAge(final Integer age) {
         this.age = age;
     }
 
     @Override
-    public String getCity() {
+    public final String getCity() {
         return city;
     }
 
     @Override
-    public void setCity(String city) {
+    public final void setCity(final String city) {
         this.city = city;
     }
 
     @Override
-    public Double getNiceScore() {
+    public final Double getNiceScore() {
         return niceScore;
     }
 
     @Override
-    public void setNiceScore(Double niceScore) {
+    public final void setNiceScore(final Double niceScore) {
         this.niceScore = niceScore;
     }
 
     @Override
-    public List<String> getGiftsPreferences() {
+    public final List<String> getGiftsPreferences() {
         return giftsPreferences;
     }
 
     @Override
-    public void setGiftsPreferences(List<String> giftsPreferences) {
+    public final void setGiftsPreferences(final List<String> giftsPreferences) {
         this.giftsPreferences = giftsPreferences;
     }
 
     @Override
-    public Double getAverageScore() {
+    public final Double getAverageScore() {
         return averageScore;
     }
 
     @Override
-    public List<Double> getNiceScoreHistory() {
+    public final List<Double> getNiceScoreHistory() {
         return niceScoreHistory;
     }
 
     @Override
-    public Double getAssignedBudget() {
+    public final Double getAssignedBudget() {
         return assignedBudget;
     }
 
     @Override
-    public List<Gift> getReceivedGifts() {
+    public final List<Gift> getReceivedGifts() {
         return receivedGifts;
     }
 
     @Override
-    public void setAssignedBudget(Double assignedBudget) {
+    public final void setAssignedBudget(final Double assignedBudget) {
         this.assignedBudget = assignedBudget;
     }
 
     @Override
-    public void setAverageScore(Double averageScore) {
+    public final void setAverageScore(final Double averageScore) {
         this.averageScore = averageScore;
     }
 
     @Override
-    public void setNiceScoreHistory(List<Double> niceScoreHistory) {
+    public final void setNiceScoreHistory(final List<Double> niceScoreHistory) {
         this.niceScoreHistory = niceScoreHistory;
     }
 
     @Override
-    public void setReceivedGifts(List<Gift> receivedGifts) {
+    public final void setReceivedGifts(final List<Gift> receivedGifts) {
         this.receivedGifts = receivedGifts;
     }
 }

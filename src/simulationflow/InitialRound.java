@@ -1,5 +1,6 @@
-package simulationFlow;
+package simulationflow;
 
+import common.Constants;
 import database.Database;
 import entities.Gift;
 import interfaces.IChild;
@@ -9,8 +10,11 @@ import java.util.Comparator;
 import java.util.List;
 
 public class InitialRound {
-    public void executeInitialRound(Database database) {
-        database.getChildren().removeIf(x -> x.getAge() > 18);
+    /**
+     * @param database the database
+     */
+    public void executeInitialRound(final Database database) {
+        database.getChildren().removeIf(x -> x.getAge() > Constants.TEEN_AGE_LIMIT);
         database.getChildren().sort(Comparator.comparingInt(IChild::getId));
 
         /*
@@ -52,8 +56,8 @@ public class InitialRound {
                  * from gPreference category
                  */
 
-                Gift cheapestFromCategory = new Gift("cheapest", 1000000.0,"category");
-                Double minPrice = 1000000.0;
+                Gift cheapestFromCategory = new Gift("cheapest", Constants.MIN_PRICE, "category");
+                Double minPrice = Constants.MIN_PRICE;
                 boolean found = false;
 
                 for (Gift santaGift : database.getSantaGiftsList()) {

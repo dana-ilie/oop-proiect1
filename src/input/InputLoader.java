@@ -1,12 +1,9 @@
 package input;
 
-import entities.Gift;
-import interfaces.IChild;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import updates.AnnualChange;
 import utils.Utils;
 
 import java.io.FileReader;
@@ -15,12 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputLoader {
-    private String inputPath;
+    private final String inputPath;
 
-    public InputLoader(String inputPath) {
+    public InputLoader(final String inputPath) {
         this.inputPath = inputPath;
     }
 
+    /**
+     * @return input instance
+     */
     public Input readData() {
         JSONParser jsonParser = new JSONParser();
         Integer numberOfYears = 0;
@@ -32,12 +32,10 @@ public class InputLoader {
         try {
             JSONObject jsonObject = (JSONObject) jsonParser
                     .parse(new FileReader(inputPath));
-            //numberOfYears = (Integer) jsonObject.get("numberOfYears");
-            //JSONObject jsonYears = (JSONObject) jsonObject.get("numberOfYears");
+
             numberOfYears = Integer.parseInt(jsonObject.get("numberOfYears").toString());
-            //numberOfYears = ((Long) jsonObject.get("numberOfYears")).intValue();
             santaBudget = ((Long) jsonObject.get("santaBudget")).doubleValue();
-            //JSONObject jsonSantaBudget = (JSONObject) jsonObject.get("santaBudget");
+
             JSONObject jsonInitialData = (JSONObject) jsonObject.get("initialData");
             JSONArray jsonChildren = (JSONArray) jsonInitialData.get("children");
             JSONArray jsonSantaGiftsList = (JSONArray) jsonInitialData.get("santaGiftsList");
@@ -51,7 +49,8 @@ public class InputLoader {
                             (String) ((JSONObject) jsonChild).get("firstName"),
                             Integer.parseInt(((JSONObject) jsonChild).get("age").toString()),
                             (String) ((JSONObject) jsonChild).get("city"),
-                            Double.parseDouble(((JSONObject) jsonChild).get("niceScore").toString()),
+                            Double.parseDouble(((JSONObject) jsonChild).get("niceScore")
+                                    .toString()),
                             Utils.convertJSONArray((JSONArray) ((JSONObject) jsonChild)
                                     .get("giftsPreferences"))
                     ));
@@ -75,7 +74,8 @@ public class InputLoader {
             if (jsonAnnualChanges != null) {
                 for (Object jsonChange : jsonAnnualChanges) {
                     annualChanges.add(new AnnualChangesInputData(
-                            Double.parseDouble(((JSONObject) jsonChange).get("newSantaBudget").toString()),
+                            Double.parseDouble(((JSONObject) jsonChange).get("newSantaBudget").
+                                    toString()),
                             Utils.convertJSONGifts((JSONArray) ((JSONObject) jsonChange)
                                     .get("newGifts")),
                             Utils.convertJSONNewChildren((JSONArray) ((JSONObject) jsonChange)
