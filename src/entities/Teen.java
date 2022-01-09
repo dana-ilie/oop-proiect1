@@ -42,8 +42,8 @@ public class Teen implements IChild {
      */
     @Override
     public void calculateAverageScore() {
-        Double scoreSum = 0.0;
-        Double weightSum = 0.0;
+        double scoreSum = 0.0;
+        double weightSum = 0.0;
         for (int i = 0; i < niceScoreHistory.size(); i++) {
             scoreSum += niceScoreHistory.get(i) * (i + 1);
             weightSum += i + 1;
