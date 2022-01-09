@@ -1,6 +1,5 @@
 package database;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import entities.Gift;
 import factories.IChildFactory;
 import input.*;
@@ -17,7 +16,7 @@ public class Database {
     private List<IChild> children;
     private List<Gift> santaGiftsList;
     private List<AnnualChange> annualChanges;
-    private List<List<IChild>> resultsList;
+    private final List<List<IChild>> resultsList;
 
     public Database (Input input) {
         children = new ArrayList<>();
@@ -146,9 +145,5 @@ public class Database {
 
     public void setAnnualChanges(List<AnnualChange> annualChanges) {
         this.annualChanges = annualChanges;
-    }
-
-    public void setResultsList(List<List<IChild>> resultsList) {
-        this.resultsList = resultsList;
     }
 }
